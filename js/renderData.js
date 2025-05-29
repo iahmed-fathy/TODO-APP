@@ -1,4 +1,5 @@
-import { clearCompletedTasksListener } from "./clearCompletedTasks";
+import iconCheck from "../images/icon-check.svg";
+import deleteIcon from "../images/icons8-delete-48.png";
 import { countTasksLeft } from "./countTasksLeft";
 import fetchData from "./fetchData";
 import markCompletedTask from "./markCompletedTask";
@@ -16,11 +17,11 @@ export default function renderData() {
               <div class="mark-circle ${
                 element.isCompleted ? "Complete" : false
               }">
-                <img class="icon-check" src="../images/icon-check.svg" alt="check icon"/>
+                <img class="icon-check" src="${iconCheck}" alt="check icon"/>
               </div>
               <p>${element.value}</p>
             </div>
-            <img class="deleteIcon" src="../images/icons8-delete-48.png" alt="delete icon"/>
+            <img class="deleteIcon" src="${deleteIcon}" alt="delete icon"/>
           </li>
 `;
   });
