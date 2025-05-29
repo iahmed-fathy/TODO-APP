@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./styles/main.scss" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Todo app</title>
+  </head>
+  <body>
+    <div class="app">
+      <div class="background__Img">
+        <div class="background__Img--light"></div>
+        <div class="background__Img--dark"></div>
+      </div>
+
+      <header>
+        <nav class="navbar">
+          <h1>Todo</h1>
+          <div class="navbar__icon">
+            <img
+              class="navbar__icon--light"
+              src="./images/icon-moon.svg"
+              alt="icon-moon"
+              tabindex="0"
+            />
+            <img
+              class="navbar__icon--dark"
+              src="./images/icon-sun.svg"
+              alt="icon-sun"
+              tabindex="0"
+            />
+          </div>
+        </nav>
+      </header>
+      <main>
+        <form id="todo-form">
+          <input
+            type="text"
+            id="new-todo"
+            name="new-todo"
+            placeholder="Create a new todo..."
+          />
+        </form>
+
+        <ul class="tasks__list"></ul>
+        <div class="todo__footer">
+          <div class="todo__footer--itemsClear">
+            <p class="todo__footer--itemLeft">
+              <span class="todo__footer--itemLeft-count"></span>
+              Items Left
+            </p>
+            <button id="clear-Completed">Clear Completed</button>
+          </div>
+
+          <div class="todo__footer--filter">
+            <button class="filter-all" data-filter="all">All</button>
+            <button class="filter-active" data-filter="active">Active</button>
+            <button class="filter-completed" data-filter="completed">
+              Completed
+            </button>
+          </div>
+          <p class="drag-drop">Drag and drop to reorder list</p>
+        </div>
+      </main>
+    </div>
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>

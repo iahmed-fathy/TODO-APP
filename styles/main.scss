@@ -1,0 +1,329 @@
+@use "./mixins.scss" as *;
+
+// Variables
+$very-light-gray: hsl(0, 0%, 98%);
+$very-light-grayish-blue: hsl(236, 33%, 92%);
+$dark-grayish-blue: hsl(236, 9%, 61%);
+$very-dark-grayish-blue: hsl(235, 19%, 35%);
+$very-dark-blue: hsl(235, 21%, 11%);
+$very-dark-desaturated-blue: hsl(235, 24%, 19%);
+$light-grayish-blue: hsl(234, 39%, 85%);
+$light-grayish-blue-hover: hsl(236, 33%, 92%);
+$very-dark-Grayish-blue: hsl(233, 14%, 35%);
+
+$display-width: 100vw;
+//End Variables
+
+// Css Reset
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: "Josefin Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+// HTML5 display-role reset for older browsers
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+html {
+  font: 62.5%;
+}
+// End Reset
+body:has(> .is-dark) {
+  background-color: #121220;
+}
+
+.app {
+  color: #8c8c98;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: calc(100vw / 1.5);
+  max-width: 60rem;
+  margin: 0 auto;
+  position: relative;
+  @include mobile {
+    width: calc(100vw / 1.2);
+  }
+
+  .background__Img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 35vh;
+
+    &--dark {
+      display: none;
+      background-image: url("../images/bg-desktop-dark.jpg");
+      @include background;
+    }
+
+    &--light {
+      display: inline-block;
+      background-image: url("../images/bg-desktop-light.jpg");
+      @include background;
+    }
+  }
+
+  header {
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 13vh;
+
+      h1 {
+        color: $very-light-gray;
+        font-size: 2rem;
+        letter-spacing: 0.3rem;
+        text-transform: uppercase;
+      }
+
+      &__icon {
+        cursor: pointer;
+
+        &--dark {
+          display: none;
+        }
+
+        &--light {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  main {
+    margin-top: 1rem;
+
+    form {
+      position: relative;
+      width: 100%;
+      background-color: white;
+      border-radius: 0.2rem;
+      padding: 1rem 2rem;
+      box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1), -5px 0 10px rgba(0, 0, 0, 0.1);
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid $dark-grayish-blue;
+        border-radius: 50%;
+      }
+
+      #new-todo {
+        margin-left: 1rem;
+        outline: none;
+        width: 100%;
+        background-color: inherit;
+        color: inherit;
+      }
+    }
+
+    .tasks__list {
+      margin-top: 2rem;
+      box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1), -5px 0 10px rgba(0, 0, 0, 0.1);
+      color: #46445a;
+      .is-draging {
+        background-color: rgb(106, 108, 226);
+      }
+      &--task {
+        font-size: 1.6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #e5e4e9;
+
+        @include mobile {
+          font-size: 1.2rem;
+        }
+
+        &:nth-child(1) {
+          border-radius: 0.2rem 0.2rem 0 0;
+        }
+
+        .task-content {
+          display: flex;
+          align-items: center;
+
+          p {
+            margin-left: 1rem;
+          }
+
+          .mark-circle {
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid $dark-grayish-blue;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &:hover {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              z-index: 1;
+              background: linear-gradient(
+                to right,
+                hsl(192, 100%, 67%, 50%),
+                hsl(280, 87%, 65%, 50%)
+              );
+            }
+
+            .icon-check {
+              display: none;
+            }
+          }
+
+          .Complete {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            background: linear-gradient(
+              to right,
+              hsl(192, 100%, 67%),
+              hsl(280, 87%, 65%)
+            );
+
+            .icon-check {
+              width: 1.5rem;
+              z-index: 1;
+              display: inline-block;
+            }
+          }
+        }
+      }
+
+      .deleteIcon {
+        cursor: pointer;
+        opacity: 0.2;
+        width: 2.5rem;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .todo__footer {
+      display: none;
+
+      body:has(.tasks__list > li) & {
+        display: block;
+      }
+
+      font-size: 90%;
+      &--itemsClear {
+        box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1),
+          -5px 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        font-weight: bold;
+        background-color: white;
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 0 0 0.2rem 0.2rem;
+        border-top: 0;
+        padding: 1rem 2rem;
+        text-align: center;
+      }
+
+      .drag-drop {
+        margin-top: 5vh;
+        text-align: center;
+      }
+
+      &--filter {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-around;
+        font-weight: bold;
+        background-color: white;
+        border-radius: 0.2rem;
+        border-top: 0;
+        padding: 1rem 2rem;
+        box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1),
+          -5px 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      button {
+        all: unset;
+        cursor: pointer;
+
+        &:hover {
+          color: #4d78dd;
+        }
+      }
+    }
+  }
+  // Dark Mode
+  &.is-dark {
+    color: white;
+    .background__Img--dark {
+      display: inline-block;
+    }
+
+    .background__Img--light {
+      display: none;
+    }
+
+    .navbar__icon--dark {
+      display: inline-block;
+    }
+
+    .navbar__icon--light {
+      display: none;
+    }
+
+    .tasks__list--task {
+      background-color: #22243a;
+      border-color: #36384d;
+    }
+
+    .tasks__list {
+      color: white;
+    }
+
+    .todo__footer {
+      &--itemsClear,
+      &--filter {
+        background-color: #22243a;
+      }
+    }
+
+    form {
+      background-color: #22243a;
+    }
+  }
+}
