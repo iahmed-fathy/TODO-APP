@@ -19,7 +19,7 @@ A simple Todo App built with HTML, CSS (Sass), and JavaScript.
 - Delete individual todos
 - Clear all completed todos with one click
 - Toggle between light and dark mode
-- **Bonus:** Drag and drop to reorder todos
+- Drag and drop to reorder todos
 
 ## Getting Started
 
